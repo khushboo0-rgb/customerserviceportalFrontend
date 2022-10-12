@@ -1,0 +1,261 @@
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="updateRequest">Home</a></li>
+
+            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="https://www.north49.com/wp-content/uploads/2016/03/Customer-Portal-Icon.png" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">
+
+            <p class="text-muted mb-1">Hello Customer </p>
+            <p class="text-muted mb-4">Edit Your Personal Details Here!</p>
+
+          </div>
+        </div>
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush rounded-3">
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fas fa-globe fa-lg text-warning"></i>
+                <div class="col-sm-9">
+                  <table>
+                    <tr *ngFor="let s of auths; let j=index">
+                      <button class="w-100 btn btn-lg btn-primary mt-2" type="button" data-bs-toggle="modal"
+                        data-bs-target="#updateprofile" (click)="updateCustomer(s,s.userId)">Edit
+                        Profile</button>
+                    </tr>
+                  </table>
+                </div>
+
+              </li>
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">First Name</p>
+              </div>
+              <div class="col-sm-9">
+                <table>
+                  <tr *ngFor="let s of auths; let j=index">
+                    <td>{{s.firstName}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Last Name</p>
+              </div>
+              <div class="col-sm-9">
+                <table>
+                  <tr *ngFor="let s of auths; let j=index">
+                    <td>{{s.lastName}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Phone</p>
+              </div>
+              <div class="col-sm-9">
+                <table>
+                  <tr *ngFor="let s of auths; let j=index">
+                    <td>{{s.contactNo}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">PAN no.</p>
+              </div>
+              <div class="col-sm-9">
+                <table>
+                  <tr *ngFor="let s of auths; let j=index">
+                    <td>{{s.pan}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <table>
+                  <tr *ngFor="let s of auths; let j=index">
+                    <td>{{s.email}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Country</p>
+              </div>
+              <div class="col-sm-9">
+                <table>
+                  <tr *ngFor="let s of auths; let j=index">
+                    <td>{{s.country}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Customer Address</p>
+              </div>
+              <div class="col-sm-9">
+                <table>
+                  <tr *ngFor="let s of auths; let j=index">
+                    <td>{{s.customerAddress}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">State</p>
+              </div>
+              <div class="col-sm-9">
+                <table>
+                  <tr *ngFor="let s of auths; let j=index">
+                    <td>{{s.state}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Date Of Birth</p>
+              </div>
+              <div class="col-sm-9">
+                <table>
+                  <tr *ngFor="let s of auths; let j=index">
+                    <td>{{s.dateOfBirth|date }}</td>
+                  </tr>
+                </table>
+              </div>
+
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Contact Preference</p>
+              </div>
+              <div class="col-sm-9">
+                <table>
+                  <tr *ngFor="let s of auths; let j=index">
+                    <td>{{s.contactPreference}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- update records Modal -->
+<div class="modal fade" id="updateprofile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title " id="exampleModalLabel">Update Your Request</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="container">
+          <!-- <h3>Edit Your Personal Details Below</h3> -->
+          <label class="form-label" for="form3Example99">First Name</label>
+          <div class="col">
+            <input type="text" class="form-control" placeholder=" First Name" [(ngModel)]=auth.firstName>
+          </div>
+          <label class="form-label" for="form3Example99">Last Name</label>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Last Name" [(ngModel)]=auth.lastName>
+          </div>
+          <br>
+          <label class="form-label" for="form3Example99">Country</label>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Country" [(ngModel)]=auth.country>
+          </div>
+          <br>
+          <label class="form-label" for="form3Example99">State</label>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="State" [(ngModel)]=auth.state>
+          </div>
+          <br>
+          <label class="form-label" for="form3Example99">Date Of Birth</label>
+          <div class="col">
+            <input type="date"  name=dateOfBirth [(ngModel)]=auth.dateOfBirth id="form3Example9"
+            (change)="disableFutureDate()" max={{futureDate}} class="form-control form-control-lg">
+            
+          </div>
+         
+         
+          <label class="form-label" for="form3Example99">PAN</label>
+          <div class="col">
+            <input type="text"  (keypress)="keyPressAlphaNumeric($event)" class="form-control" placeholder="PAN" [(ngModel)]=auth.pan>
+          </div>
+          <label class="form-label" for="form3Example99">Customer Address</label>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Customer Address" [(ngModel)]=auth.customerAddress>
+          </div>
+          <label class="form-label" for="form3Example99">Contact No</label>
+          <div class="col">
+            <input type="text" class="form-control" (keypress)="keyPressNumbers($event)" maxlength="10" placeholder="Contact No" [(ngModel)]=auth.contactNo>
+          </div>
+          
+
+          <label class="form-label" for="form3Example99">Contact Preference</label>
+          <div class="col">
+
+            <select class="form-select" placeholder="Contact Preference"
+              title='Enter Where We can Contact , Email or ContactNo!' [(ngModel)]=auth.contactPreference
+              id="floatingSelect" title="Floating label select example">
+              <option value="contactNo">Contact No</option>
+              <option value="email">Email</option>
+            </select>
+
+          </div>
+
+          <button class="w-100 btn btn-lg btn-primary mt-2" type="button" (click)="update(auth)">Update
+            Request</button>
+        </div>
+
+      </div>
+
+    </div>

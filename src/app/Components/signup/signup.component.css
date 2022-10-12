@@ -1,0 +1,23 @@
+
+h3,mat-label,checkbox{
+    color:darkblue
+  }
+  .container-fluid{
+    background-color:white
+  }
+  p,mat-label,checkbox{
+    color:red
+  }
+  label,mat-label,checkbox{
+    color:blueviolet
+  }
+  .con
+  button{
+    background-color: #323a62;
+    color: white;
+  }
+  button:hover{
+    background-color: rgb(29, 90, 148);
+    color: white;
+  }
+  

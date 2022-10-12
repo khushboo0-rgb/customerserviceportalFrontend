@@ -1,0 +1,42 @@
+<app-header></app-header>
+<br>
+<br>
+
+<div class="b-example-divider"></div>
+
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+  <div class="row align-items-center g-lg-5 py-5">
+    <div class="col-lg-7 text-center text-lg-start">
+      <h1 class="display-4 fw-bold lh-1 mb-3">CUSTOMER SERVICE PORTAL</h1>
+      <p class="col-lg-10 fs-4">Welcome User!. We are here to help you with all your Service Related Issues, Please
+        login to continue...</p>
+    </div>
+    <div class="col-md-10 mx-auto col-lg-5">
+      <form class="p-4 p-md-5 border rounded-3 bg-light">
+        <div class="form-floating mb-3">
+
+          <input type="email" name="email" [(ngModel)]=auth.email class="form-control" id="floatingInput"
+            placeholder="name@example.com">
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" name="password" [(ngModel)]=auth.passWord class="form-control" id="floatingPassword"
+            placeholder="Password">
+          <label for="floatingPassword">Password</label>
+        </div>
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" (click)="checkLogin()" type="submit">Log In</button>
+
+        <hr class="my-4">
+        <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+      </form>
+      <a routerLink="/signUp"> New User? Click to sign up!! </a>
+    </div>
+  </div>
+</div>
+
+<div class="b-example-divider"></div>

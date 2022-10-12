@@ -1,0 +1,177 @@
+<app-header></app-header>
+<br>
+<br>
+
+
+<section class="h-100 bg-dark">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <div class="row g-0">
+            <div class="col-xl-6 d-none d-xl-block">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                alt="Sample photo" class="img-fluid"
+                style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+            </div>
+            <div class="col-xl-6">
+              <div class="card-body p-md-5 text-black">
+                <h3 class="mb-5 text-uppercase">Customer Registration Form</h3>
+
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <label class="form-label" for="form3Example1m">First Name</label>
+
+                      <input type="text" name="firstname" title='Enter Your First Name Here!' [(ngModel)]=auth.firstName
+                        id="form3Example1m" class="form-control form-control-lg" />
+
+                    </div>
+
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <label class="form-label" for="form3Example1m">Last Name</label>
+                      <input type="text" name="lastname" [(ngModel)]=auth.lastName id="form3Example1m"
+                        class="form-control form-control-lg" />
+
+                    </div>
+                  </div>
+                </div>
+
+            
+                
+
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example8">Customer Address</label>
+                  <input type="text" name="customerAddress" [(ngModel)]=auth.customerAddress id="form3Example8"
+                    class="form-control form-control-lg" />
+
+                </div>
+
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example8">Country</label>
+
+                  <select class="form-control" (change)="onChangeCountry($event.target.value)">
+
+                    <option *ngFor="let country of countryInfo; let i = index" value="{{i}}"> {{country.CountryName}}
+                    </option>
+
+                  </select>
+
+
+
+                </div>
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example8">State</label>
+                  <select class="form-control" (change)="onChangeState($event.target.value)">
+
+                    <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</option>
+
+                  </select>
+
+
+
+                </div>
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example8">City</label>
+                  <select class="form-control">
+
+                    <option *ngFor="let city of cityInfo; let k = index" value="{{k}}">{{city}}</option>
+                  </select>
+
+
+
+                </div>
+
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example9">Date Of Birth</label>
+                  <input type="date" name=dateOfBirth [(ngModel)]=auth.dateOfBirth id="form3Example9"
+                    (change)="disableFutureDate()" max={{futureDate}} class="form-control form-control-lg" />
+
+                </div>
+
+               
+               
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example99">Contact Preference</label>
+                  <select class="form-select" title='Enter Where We can Contact , Email or ContactNo!'
+                    [(ngModel)]=auth.contactPreference id="floatingSelect" title="Floating label select example">
+                    <option value="contactNo">Contact No</option>
+                    <option value="email">Email</option>
+                  </select>
+
+                </div>
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example90">Pan No.</label>
+                  <input type="text"  (keypress)="keyPressAlphaNumeric($event)"  id="form3Example90" class="form-control " [(ngModel)]=auth.pan  />
+
+                </div>
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example99">Contact No.</label>
+                  <input type="text" (keypress)="keyPressNumbers($event)"  [(ngModel)]=auth.contactNo  maxlength="10" id="form3Example99"
+                    class="form-control form-control-lg" />
+
+                </div>
+                    <p>Below Fields Are Mandatory For SignUp!</p>
+
+                <div class="card card-body">
+                  <form [formGroup]="frmSignup" (submit)="createUser()">
+                
+               
+               
+
+                <div class="form-group">
+                  <label for="email" [ngClass]="frmSignup.controls['email'].invalid ? 'text-danger' : ''">Email
+                    Address</label>
+                  <input name="email" type="password" autocomplete="new-email" input type="email"
+                    [(ngModel)]=auth.email (change)="checkDuplicate()" id="email" formControlName="email"
+                    class="form-control" [ngClass]="frmSignup.controls['email'].invalid ? 'is-invalid' : ''">
+
+                  <label class="text-danger" *ngIf="frmSignup.controls['email'].hasError('required')"
+                    ng-required="true" autocomplete="off">
+                    Email is Required!
+                  </label>
+                  <label class="text-danger" *ngIf="frmSignup.controls['email'].hasError('email')">
+                    Enter a valid email address!
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label for="password"
+                    [ngClass]="frmSignup.controls['password'].invalid ? 'text-danger' : ''">Password:</label>
+                  <input id="password" formControlName="password" type="password" input [(ngModel)]=auth.passWord
+                    class="form-control" [ngClass]="frmSignup.controls['password'].invalid ? 'is-invalid' : ''">
+
+                </div>
+                <div class="form-group">
+                  <label for="confirmPassword"
+                    [ngClass]="frmSignup.controls['confirmPassword'].invalid ? 'text-danger' : ''">Confirm
+                    Password:</label>
+                  <input id="confirmPassword" formControlName="confirmPassword" type="password" class="form-control"
+                    [ngClass]="frmSignup.controls['confirmPassword'].invalid ? 'is-invalid' : ''">
+                  <label class="text-danger" *ngIf="frmSignup.controls['confirmPassword'].hasError('required')">
+                    Password is Required!
+                  </label>
+                  <label class="text-danger"
+                    *ngIf="frmSignup.controls['confirmPassword'].hasError('NoPassswordMatch')">
+                    Password do not match
+                  </label>
+                </div>
+                <div class="form-group">
+                  <button [disabled]="frmSignup.invalid" type="submit"
+                    class="btn btn-primary btn-block font-weight-bold">Sign
+                    up</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>

@@ -1,0 +1,146 @@
+<app-header2></app-header2>
+<div class="container-fluid">
+  <button type="submit" class="btn btn-danger" (click)="close()">Back</button>
+  <div class="row">
+    <div class="col">
+      <div id="box">
+
+        <div id="items">
+
+
+          <br>
+
+
+
+          <div class="container py-5 text-center tableclr">
+            <label for="Request Title" class="form-label">SEARCH YOUR REQUEST HERE!</label>
+            <input type="text" class="form-control" placeholder="Type Request Title to search"
+              [(ngModel)]="request.requestTitle">
+
+          </div>
+
+
+
+
+          <div class="container py-5 text-center tableclr">
+            <h3 class="text-center text-uppercase">Your Closed Requests</h3>
+            <table class="table table-bordered table-striped {
+            background-color: burlywood;
+            
+        }">
+              <thead>
+                <tr class="text-center text-uppercase">
+                  <th>Request Id</th>
+                  <th>Request Title</th>
+                  <th>Click To Update Request</th>
+                  <th>Click To Delete Request</th>
+
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let b of requests | filter:request.requestTitle; let j=index">
+                  <td class="nav-link px-2 link-primary" style="cursor: pointer;" data-bs-toggle="modal"
+                    data-bs-target="#updatemodal" (click)="updateRequest(b,b.requestId)">
+                    <div style="white-space: normal">
+                      {{b.requestId}}
+                    </div>
+                  </td>
+                  <td>{{b.requestTitle}}</td>
+
+                  <td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#updatemodal"
+                      (click)="updateRequest(b,b.requestId)">UPDATE</button></td>
+
+                  <td><button type="button" class="btn btn-danger" (click)="delete(b.requestId)">DELETE</button></td>
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+
+        </div>
+      </div>
+      <!-- update records Modal -->
+      <div class="modal fade" id="updatemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title " id="exampleModalLabel">Update Your Request</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+              <form class="p-4 p-md-4 border rounded-3 bg-light">
+                <label for="Request Title" class="form-label">REQUEST TITLE</label>
+                <div class="col">
+                  <input type="text"  disabled [ngModelOptions]="{standalone: true}" class="form-control"
+                    placeholder="Request Title" [(ngModel)]=request.requestTitle>
+                </div>
+
+                <label for="Request Title" class="form-label">REQUEST DESCRIPTION</label>
+                <div class="col">
+                  <input type="text" [ngModelOptions]="{standalone: true}" class="form-control"
+                    placeholder="Request Text" [(ngModel)]=request.requestDescription>
+                </div>
+
+
+                <label for="Request Title" class="form-label">REQUEST STATUS</label>
+                <div class="col">
+
+                  <div class="coll" [(ngModel)]=request.requestStatus input type="text"
+                    [ngModelOptions]="{standalone: true}" name="requestStatus" id="floatingSelect"
+                    aria-label="Floating label select example">
+
+                    <div *ngIf=" request.requestStatus == 'closed' ">
+                      <select class="form-select" [(ngModel)]=request.requestStatus input type="text"
+                        [ngModelOptions]="{standalone: true}" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option *ngFor=" let status of statusOption2">{{status}}</option>
+                      </select>
+
+                    </div>
+                    <div *ngIf=" request.requestStatus == 'pending' ">
+                      <select class="form-select" [(ngModel)]=request.requestStatus input type="text"
+                        [ngModelOptions]="{standalone: true}" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option *ngFor=" let status of statusOption">{{status}}</option>
+                      </select>
+
+
+                    </div>
+                    <div *ngIf=" request.requestStatus == 'reopen' ">
+                      <select class="form-select" [(ngModel)]=request.requestStatus id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option *ngFor=" let status of statusOption2">{{status}}</option>
+                      </select>
+
+
+                    </div>
+                  </div>
+
+                </div>
+
+                <br>
+                <label for="Request Title" class="form-label">REQUEST CATEGORY</label>
+
+                <div class="col">
+
+                  <select class="form-select" input type="text" [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]=request.requestCategory id="floatingSelect" aria-label="Floating label select example">
+
+                    <option *ngFor="let requestCategory of requestCategories">{{requestCategory.requestCategory}}
+                    </option>
+                  </select>
+
+                </div>
+                <button class="w-100 btn btn-lg btn-primary mt-2" type="button" (click)="update(request)">Update
+                  Request</button>
+                <button class="w-100 btn btn-lg btn-success mt-2" data-bs-dismiss="modal" type="submit">Close </button>
+
+                <hr class="my-4">
+
+              </form>
+
+            </div>
+
+          </div>

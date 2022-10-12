@@ -1,0 +1,10 @@
+thead{
+    background-color: #323a62;
+    color: white;
+  }
+  h3,mat-label,checkbox{
+    color:darkblue
+  }
+  h5,label,mat-label,checkbox{
+    color:darkblue
+  }
